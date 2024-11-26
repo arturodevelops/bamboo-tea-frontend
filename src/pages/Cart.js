@@ -1,26 +1,10 @@
-import React, { useState }from 'react';
 import { useCart } from '../context/CartContext';
-import { Button, Text, Input } from '@chakra-ui/react';
-import { Alert } from '../components/ui/alert';
-import { withMask } from 'use-mask-input'
+import { Button, Text,} from '@chakra-ui/react';
 import CartCard from '../components/CartCard';
+import { Link } from 'react-router-dom';
 
 function Cart() {
-  const { cardData, handleCardCountRestChange, handleCardCountAddChange, cardCounts, totalCount} = useCart(); // Access context state
-
-  const [userName, setUserName] = useState('');
-  const [userPhone, setUserPhone] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');  
-
-
-  const handlePayment = () => {
-    if (!userName.trim() || !userPhone.trim()){
-      setErrorMessage('Por favor, completa todos los campos.');
-      return;
-    }
-    setErrorMessage('');
-    
-  }
+  const { cardData, handleCardCountRestChange, handleCardCountAddChange, cardCounts, totalCount} = useCart();
 
   const totalPrice = cardData.reduce((total, card ) => {
     const count = cardCounts[card.id] || 0;
@@ -32,29 +16,6 @@ function Cart() {
 
   return (
       <div style={styles.home}>
-        <div style={styles.form}>
-          <Text textStyle="3x1" mb={2}>Llena los datos para generar el pedido</Text>
-          {errorMessage &&
-            <Alert status="error" title="Campos invalidos">
-            {errorMessage}
-            </Alert>
-          }
-          <Text textStyle="xl">Ingresa tu nombre:</Text>
-          <Input placeholder='Tu nombre'
-            variant="outline"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            mb={4}
-          />
-          <Text textStyle="xl">Ingresa tu numero de telefono:</Text>
-          <Input placeholder="(99) 99999-9999"
-            ref={withMask("(99) 99999-9999")}
-            variant="outline"
-            value={userPhone}
-            onChange={(e) => setUserPhone(e.target.value)}
-            mb={4}
-          />
-        </div>
         <div style={styles.separation}/> 
         <div style={styles.cards} >
           {cardData
@@ -74,7 +35,9 @@ function Cart() {
           <Text fontSize="xl" fontWeight="bold">
             Total: ${totalPrice.toFixed(2)}
           </Text>
-          <Button variant="outline" width="200px" onClick={handlePayment}>Pasar a pagar</Button>
+          <Link to="/checkout">
+            <Button variant="outline" width="200px" >Pasar a pagar</Button> 
+          </Link>
         </div>
       </div>
   );
@@ -91,7 +54,7 @@ const styles = {
     paddingTop: 10,
   },
   cards: {
-    width: "80%",
+    width: "100%",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center", 

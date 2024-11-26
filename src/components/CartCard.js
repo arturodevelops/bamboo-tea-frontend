@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Button, Card, HStack, Heading, Avatar } from "@chakra-ui/react"
+import { Text, Button, Card, HStack, Heading } from "@chakra-ui/react"
 
 function CartCard({ id, name, price, onRestCountChange, onAddCountChange, cardCounts }) {
   
