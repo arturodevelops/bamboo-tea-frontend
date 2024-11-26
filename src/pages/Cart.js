@@ -1,6 +1,8 @@
 import React, { useState }from 'react';
 import { useCart } from '../context/CartContext';
-import { Button, Text, Input, Alert, AlertIcon} from '@chakra-ui/react';
+import { Button, Text, Input } from '@chakra-ui/react';
+import { Alert } from '../components/ui/alert';
+import { withMask } from 'use-mask-input'
 import CartCard from '../components/CartCard';
 
 function Cart() {
@@ -32,19 +34,22 @@ function Cart() {
       <div style={styles.home}>
         <div style={styles.form}>
           <Text textStyle="3x1" mb={2}>Llena los datos para generar el pedido</Text>
-          {errorMessage.toString() && (
-            <Alert status="error" mb={4}>
-              {errorMessage}
+          {errorMessage &&
+            <Alert status="error" title="Campos invalidos">
+            {errorMessage}
             </Alert>
-          )}
+          }
           <Text textStyle="xl">Ingresa tu nombre:</Text>
-          <Input placeholder="Tu nombre" variant="outline" 
+          <Input placeholder='Tu nombre'
+            variant="outline"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             mb={4}
           />
           <Text textStyle="xl">Ingresa tu numero de telefono:</Text>
-          <Input placeholder='Tu telefono' variant="outline"
+          <Input placeholder="(99) 99999-9999"
+            ref={withMask("(99) 99999-9999")}
+            variant="outline"
             value={userPhone}
             onChange={(e) => setUserPhone(e.target.value)}
             mb={4}
