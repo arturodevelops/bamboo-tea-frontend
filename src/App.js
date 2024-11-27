@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Cart from './pages/Cart';
+import ReturnPage from './pages/ReturnPage';
 import StripeProvider from './context/StripeContextProvider';
 import Checkout from './pages/Checkout';
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/" element={<Home />}/>
                 <Route path='/cart' element={<Cart />}/>
                 <Route path='/checkout' element={<Checkout />} />
+                <Route path='/return' element={<ReturnPage />}/>
               </Routes>
             </main>
             <Footer />

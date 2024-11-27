@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const apiClient = axios.create({
     baseURL: 'http://3.17.149.131:3000/api/',
-    timeout: 70000,
+    timeout: 5000,
 })
 
 export const fetchData = async () => {
@@ -27,16 +27,15 @@ export const createSession = async (payload) => {
 
 export const fetchSession = async (sessionId) => {
     try {
-        const response = await fetch(`/orders/confirm-order?session_id=${sessionId}`);
-        if(!response.ok) {
-            throw new Error('Failed to fetch session');
-        }
+        const response = await apiClient.get(`/orders/confirm-order`, {
+            params: { session_id: sessionId },
+        });
 
-        const session = await response.json();
-        return session;
+        return response.data;
     } catch (error) {
-        console.error('Error fetching session:', error);
+        console.error("Error fetching session:", error);
         throw error;
     }
 };
+
 

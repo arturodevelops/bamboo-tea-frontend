@@ -4,7 +4,7 @@ import CartCard from '../components/CartCard';
 import { Link } from 'react-router-dom';
 
 function Cart() {
-  const { cardData, handleCardCountRestChange, handleCardCountAddChange, cardCounts, totalCount} = useCart();
+  const { cardData, handleCardCountRestChange, handleCardCountAddChange, cardCounts, totalCount } = useCart();
 
   const totalPrice = cardData.reduce((total, card ) => {
     const count = cardCounts[card.id] || 0;
@@ -48,7 +48,7 @@ const styles = {
     paddingTop: 150,
     display: "flex",
     flexDirection: "column",
-    alignItems: "center", // Center align the entire content
+    alignItems: "center",
   },
   separation: {
     paddingTop: 10,

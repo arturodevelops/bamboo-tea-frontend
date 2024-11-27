@@ -10,13 +10,14 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false);
-    const { totalCount, cardData, cardCounts } = useCart();
+    const { totalCount, cardData, cardCounts, setNewName } = useCart();
     
     const [userName, setUserName] = useState('');
     const [userPhone, setUserPhone] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     
-    const [clientSecret, setClientSecret] = useState(null); // Store the Stripe client secret
+    const [clientSecret, setClientSecret] = useState(null);
+
 
     const handleCheckout = async () => {
         if (!userName.trim() || !userPhone.trim()) {
@@ -25,6 +26,7 @@ const Checkout = () => {
         }
         setErrorMessage('');
         setLoading(true);
+        setNewName(userName);
         try {
             const payload = {
                 name: userName,
@@ -36,12 +38,9 @@ const Checkout = () => {
                         quantity: cardCounts[card.id],
                     })),
             };
-
-            // Call the backend API to create the session and retrieve the clientSecret
-            const session = await createSession(payload); // Create the session on your server
+            const session = await createSession(payload); 
             
-            // Assuming your backend returns a session with a clientSecret
-            setClientSecret(session.clientSecret); // Store the client secret
+            setClientSecret(session.clientSecret); 
 
         } catch (error) {
             console.error(error);
@@ -57,7 +56,8 @@ const Checkout = () => {
 
     return (
         <div style={styles.home}>
-            <div style={styles.form}>
+            {/*Se oculta el formulario en cuanto se recibe respuesta de stripe*/}
+            {!clientSecret && <div style={styles.form}>
                 <Text textStyle="3x1" mb={2}>Llena los datos para generar el pedido</Text>
                 {errorMessage &&
                     <Alert status="error" title="Campos invalidos">
@@ -81,12 +81,10 @@ const Checkout = () => {
                     mb={4}
                     disabled={clientSecret}
                 />
-            </div>
-            <Button onClick={handleCheckout} disabled={loading || clientSecret}>
+                <Button onClick={handleCheckout} disabled={loading || clientSecret}>
                 {loading ? 'Procesando...': 'Chekout'}
-            </Button>
-
-            {/* Pass the clientSecret to the EmbeddedCheckoutProvider */}
+                </Button>
+            </div>}
             {clientSecret && (
                 <EmbeddedCheckoutProvider
                     stripe={loadStripe('pk_test_51QLFynHSsQ6HUBrZGSapnw6lZU2aIXxg6uXi8s4cnpnIJ8PAsFFqbh2AKdyk2nPH6ZCejrHQREcIzozZORSvql7V00YTE7NztF')}
