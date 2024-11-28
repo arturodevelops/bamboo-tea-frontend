@@ -10,7 +10,8 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false);
-    const { totalCount, cardData, cardCounts, setNewName } = useCart();
+
+    const { totalCount, cardData, cardCounts} = useCart();
     
     const [userName, setUserName] = useState('');
     const [userPhone, setUserPhone] = useState('');
@@ -26,10 +27,10 @@ const Checkout = () => {
         }
         setErrorMessage('');
         setLoading(true);
-        setNewName(userName);
         try {
             const payload = {
                 name: userName,
+                phone: "33345132337",
                 items: cardData
                     .filter(card => cardCounts[card.id] > 0)
                     .map(card => ({

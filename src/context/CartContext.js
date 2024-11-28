@@ -15,7 +15,6 @@ export const CartProvider = ({ children }) => {
   // Initialize the cardCounts state with an empty object
   const [cardCounts, setCardCounts] = useState({});
   const [cardData, setData] = useState([]);
-  const [name, setName] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -46,11 +45,7 @@ export const CartProvider = ({ children }) => {
       return newCounts;
     });
   };
-  
-  const setNewName = (newname) =>
-  {
-    setName(newname);
-  }
+
 
   const totalCount = Object.values(cardCounts).reduce((acc, count) => acc + count, 0);
 
@@ -61,9 +56,7 @@ export const CartProvider = ({ children }) => {
         cardData,
         handleCardCountAddChange,
         handleCardCountRestChange,
-        setNewName,
         totalCount,
-        name,
       }}
     >
       {children}
