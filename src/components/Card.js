@@ -22,29 +22,33 @@ function DrinkCard({ id, name, description, price, imageUrl,  onAddCountChange, 
   };
 
   return (
-    <Card.Root maxW="sm" overflow="hidden">
+    <Card.Root maxW="xs" overflow="hidden" borderRadius="8px" boxShadow="md">
       <Image
         src={imageUrl}
         alt={name}
+        boxSize="200px" // Smaller image size
+        // objectFit="cover" // Ensures the image scales correctly without distortion
+        mx="auto"
       />
-      <Card.Body gap="2">
-        <Card.Title>{name}</Card.Title>
-        <Card.Description>
+      <Card.Body gap="1" textAlign="left">
+        <Card.Title fontSize="lg">{name}</Card.Title>
+        <Card.Description fontSize="sm" noOfLines={2}> {/* Limiting description length */}
           {description}
         </Card.Description>
         <HStack>
-          <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
+          <Text textStyle="xl" fontWeight="medium" letterSpacing="tight" mt="2">
             ${price}.00
           </Text>
           <Text fontWeight="small">x{count}</Text>
         </HStack>
       </Card.Body>
       <Card.Footer gap="2">
-        <Button variant="solid" onClick={handleAdd}>Add to cart</Button>
-        <Button variant="ghost" onClick={handleRemove} disabled={count === 0} >Remove from cart</Button>
+        <Button variant="solid" size="sm" onClick={handleAdd}>Add to cart</Button>
+        <Button variant="ghost" size="sm" onClick={handleRemove} disabled={count === 0}>Remove from cart</Button>
       </Card.Footer>
     </Card.Root>
   );
+  
 }
 
 export default DrinkCard;

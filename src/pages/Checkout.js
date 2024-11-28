@@ -74,7 +74,7 @@ const Checkout = () => {
                     disabled={clientSecret}
                 />
                 <Text textStyle="xl">Ingresa tu numero de telefono:</Text>
-                <Input placeholder="(99) 99999-9999"
+                <Input placeholder="(99) 9999-9999"
                     ref={withMask("(99) 99999-9999")}
                     variant="outline"
                     value={userPhone}

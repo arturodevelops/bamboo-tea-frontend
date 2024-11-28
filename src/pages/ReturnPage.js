@@ -39,11 +39,28 @@ function ReturnPage() {
 
     if (paymentStatus === 'paid') {
         return (
-            <div>
-                <h1>{session.order_name}</h1>
-                <h1>Su pago se realizo con exito </h1>
-                <h1>Su número para recoger el pedido es {session.order_id}</h1>
-            </div>)
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+                textAlign: 'center'
+              }}
+            >
+              <h1 style={{
+                paddingTop:'10px'
+              }}>Gracias por tu Bamboorden!</h1>
+              <img 
+                src="https://bamboo-tea-media.s3.us-east-2.amazonaws.com/image-from-rawpixel-id-10094233-png.png" 
+                style={{ maxWidth: '30%', height: 'auto' }} 
+                alt="Bubble Tea" 
+              />
+              <h1>{session.order_name}, su número para recoger el pedido es {session.order_id}</h1>
+            </div>
+          );
+          
     } else if (paymentStatus === 'failed') {
         return (<h1>Hubo un error al realizar el pago, porfavor intentelo de nuevo despues de un tiempo</h1>        
         );

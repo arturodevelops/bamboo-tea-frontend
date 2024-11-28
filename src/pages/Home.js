@@ -8,11 +8,10 @@ function Home() {
 
   return (
     <div style={styles.home}>
-      <Separator size="lg" paddingBottom="10" />
-      <Text textStyle="6xl">Milk Tea Series</Text>
-      <Separator size="lg" paddingBottom="10"/>
+    <Text textStyle="4xl" style={styles.title} paddingBottom={"5"}>Milk Tea Series</Text>
+    <Separator style={styles.customSeparator} />
       
-      <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', paddingBottom: '100'}}>
+      <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', paddingBottom: '100px', gap:'20px'}}>
         {cardData
           .filter(card => card.category === 1)
           .map(card => (
@@ -30,9 +29,8 @@ function Home() {
         ))}
       </div>
 
-      <Separator size="lg" paddingBottom="10"/>
-      <Text textStyle="6xl">Lemon Tea Series</Text>
-      <Separator size="lg" paddingBottom="10"/>
+      <Text textStyle="4xl" style={styles.title} paddingBottom={"5"}>Lemon Tea Series</Text>
+      <Separator style={{ borderBottom: "1px solid #999", paddingBottom: "10px", borderTop:"1px solid #999" }} />
 
       <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {cardData
@@ -51,30 +49,25 @@ function Home() {
           />
         ))}
       </div>
-
-      <Separator size="lg" paddingBottom="10"/>
-      <Text textStyle="6xl">Cheese Milk Cap Series</Text>
-      <Separator size="lg" paddingBottom="10"/>
-
-      <Separator size="lg" paddingBottom="10"/>
-      <Text textStyle="6xl">Fruit Tea Series</Text>
-      <Separator size="lg" paddingBottom="10"/>
-
-      <Separator size="lg" paddingBottom="10"/>
-      <Text textStyle="6xl">Smoothies Series</Text>
-      <Separator size="lg" paddingBottom="10"/>
-
-      <Separator size="lg" paddingBottom="10"/>
-      <Text textStyle="6xl">Frappe Series</Text>
-      <Separator size="lg" paddingBottom="10"/>
     </div>
   );
 }
 
 const styles = {
   home: {
-    paddingTop: 150
+    paddingTop: 150,
+  },
+
+  customSeparator: {  // Use camelCase for the key name as well
+    borderBottom: '1px solid #999',  // Use camelCase for the property
+    paddingBottom: 25,  // Correct syntax
+  },
+
+  title: {
+    textAlign: 'left',  // Align text to the left
+    fontFamily: '"Deco", sans-serif',  // Apply the Deco font
   },
 };
+
 
 export default Home;

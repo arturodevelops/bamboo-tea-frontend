@@ -16,7 +16,7 @@ function Header() {
         <div style={styles.navRight}>
           <Link to="/" style={styles.menuLink}>Menú</Link>
           <Link to="/cart" style={styles.menuLink}>
-            <img src='http://localhost:8080/carrito.png' alt="carrito" style={styles.carrito} />
+            <img src='https://bamboo-tea-media.s3.us-east-2.amazonaws.com/carrito.png' alt="carrito" style={styles.carrito} />
           </Link>
           <div style={styles.carrritoCounterContainer}>
             <h5 style={styles.carrritoCounter}>{totalCount}</h5>
