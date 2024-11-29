@@ -26,13 +26,12 @@ function DrinkCard({ id, name, description, price, imageUrl,  onAddCountChange, 
       <Image
         src={imageUrl}
         alt={name}
-        boxSize="200px" // Smaller image size
-        // objectFit="cover" // Ensures the image scales correctly without distortion
+        boxSize="200px"
         mx="auto"
       />
       <Card.Body gap="1" textAlign="left">
         <Card.Title fontSize="lg">{name}</Card.Title>
-        <Card.Description fontSize="sm" noOfLines={2}> {/* Limiting description length */}
+        <Card.Description fontSize="sm" noOfLines={2}>
           {description}
         </Card.Description>
         <HStack>

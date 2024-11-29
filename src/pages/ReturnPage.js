@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchSession } from '../api/CRUD'; // You can implement this API to retrieve session details
+import { Stack } from '@chakra-ui/react';
+import OrderCard from '../components/OrderCard';
 
 function ReturnPage() {
     const [loading, setLoading] = useState(true);
@@ -50,7 +52,7 @@ function ReturnPage() {
               }}
             >
               <h1 style={{
-                paddingTop:'10px'
+                paddingTop:'100px'
               }}>Gracias por tu Bamboorden!</h1>
               <img 
                 src="https://bamboo-tea-media.s3.us-east-2.amazonaws.com/image-from-rawpixel-id-10094233-png.png" 
@@ -58,6 +60,18 @@ function ReturnPage() {
                 alt="Bubble Tea" 
               />
               <h1>{session.order_name}, su número para recoger el pedido es {session.order_id}</h1>
+              <h2>Recoge tu pedido en Avenida Tepeyac 4919, Zapopan, Jal.</h2>
+              <Stack>
+                {session.orders_drinks
+                  .map(card =>(
+                    <OrderCard
+                      id={card.id}
+                      name={card.name}
+                      description={card.description}
+                      amount={card.amount}
+                    />
+                  ))}
+              </Stack>
             </div>
           );
           
